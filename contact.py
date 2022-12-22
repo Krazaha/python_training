@@ -1,4 +1,4 @@
-class AddNew:
+class Contact:
 
     def __init__(self, firstname, middlename, lastname, nickname, company, address, homephone, mobilephone,
                          email, bday, confirmbday, bmonth, confirmbmonth, byear):

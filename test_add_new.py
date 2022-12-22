@@ -4,7 +4,7 @@ from selenium.webdriver.support.ui import Select
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
 import unittest
-from add_new import AddNew
+from contact import Contact
 
 class TestAddNew(unittest.TestCase):
     def setUp(self):
@@ -16,7 +16,7 @@ class TestAddNew(unittest.TestCase):
         self.open_home_page(wd)
         self.login(wd, username="admin", password="secret")
         self.open_add_new_page(wd)
-        self.add_new_creating(wd, AddNew(firstname="Ivan", middlename="Ivanovich", lastname="Ivanov", nickname="Ivani4",
+        self.add_new_creating(wd, Contact(firstname="Ivan", middlename="Ivanovich", lastname="Ivanov", nickname="Ivani4",
                               company="Roga i kopita", address="Moscow", homephone="912313123123",
                               mobilephone="231231241231", email="asdasd@sdfasdasd", bday="1",
                               confirmbday="//option[@value='1']", bmonth="March",
@@ -28,7 +28,7 @@ class TestAddNew(unittest.TestCase):
         self.open_home_page(wd)
         self.login(wd, username="admin", password="secret")
         self.open_add_new_page(wd)
-        self.add_new_creating(wd, AddNew(firstname="", middlename="", lastname="", nickname="",
+        self.add_new_creating(wd, Contact(firstname="", middlename="", lastname="", nickname="",
                               company="", address="", homephone="",
                               mobilephone="", email="", bday="",
                               confirmbday="//option[@value='']", bmonth="-",
