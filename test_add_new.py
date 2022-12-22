@@ -22,6 +22,18 @@ class TestAddNew(unittest.TestCase):
                               confirmbmonth="//option[@value='March']", byear="1900")
         self.logout(wd)
 
+    def test_add_empty_new(self):
+        wd = self.wd
+        self.open_home_page(wd)
+        self.login(wd, username="admin", password="secret")
+        self.open_add_new_page(wd)
+        self.add_new_creating(wd, firstname="", middlename="", lastname="", nickname="",
+                              company="", address="", homephone="",
+                              mobilephone="", email="", bday="",
+                              confirmbday="//option[@value='']", bmonth="-",
+                              confirmbmonth="//option[@value='-']", byear="")
+        self.logout(wd)
+
     def logout(self, wd):
         wd.find_element_by_link_text("Logout").click()
 
