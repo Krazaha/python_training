@@ -13,9 +13,7 @@ class TestAddNew(unittest.TestCase):
     
     def test_add_new(self):
         wd = self.wd
-        self.open_home_page(wd)
         self.login(wd, username="admin", password="secret")
-        self.open_add_new_page(wd)
         self.add_new_creating(wd, Contact(firstname="Ivan", middlename="Ivanovich", lastname="Ivanov", nickname="Ivani4",
                               company="Roga i kopita", address="Moscow", homephone="912313123123",
                               mobilephone="231231241231", email="asdasd@sdfasdasd", bday="1",
@@ -25,9 +23,7 @@ class TestAddNew(unittest.TestCase):
 
     def test_add_empty_new(self):
         wd = self.wd
-        self.open_home_page(wd)
         self.login(wd, username="admin", password="secret")
-        self.open_add_new_page(wd)
         self.add_new_creating(wd, Contact(firstname="", middlename="", lastname="", nickname="",
                               company="", address="", homephone="",
                               mobilephone="", email="", bday="",
@@ -39,6 +35,7 @@ class TestAddNew(unittest.TestCase):
         wd.find_element_by_link_text("Logout").click()
 
     def add_new_creating(self, wd, add_new):
+        self.open_add_new_page(wd)
         # fill firstname
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
@@ -93,6 +90,7 @@ class TestAddNew(unittest.TestCase):
         wd.find_element_by_link_text("add new").click()
 
     def login(self, wd, username, password):
+        self.open_home_page(wd)
         wd.find_element_by_name("user").click()
         wd.find_element_by_name("user").clear()
         wd.find_element_by_name("user").send_keys(username)
