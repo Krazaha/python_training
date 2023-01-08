@@ -7,24 +7,28 @@ class GroupHelper:
         wd = self.app.wd
         wd.find_element_by_link_text("groups").click()
 
-    def create(self, group):
+    def create(self, fill):
         wd = self.app.wd
         self.open_groups_page()
         # init group creation
         wd.find_element_by_name("new").click()
         # fill group form
-        wd.find_element_by_name("group_name").click()
-        wd.find_element_by_name("group_name").clear()
-        wd.find_element_by_name("group_name").send_keys(group.name)
-        wd.find_element_by_name("group_header").click()
-        wd.find_element_by_name("group_header").clear()
-        wd.find_element_by_name("group_header").send_keys(group.header)
-        wd.find_element_by_name("group_footer").click()
-        wd.find_element_by_name("group_footer").clear()
-        wd.find_element_by_name("group_footer").send_keys(group.footer)
+        self.fill_form(fill)
         # submit group creation
         wd.find_element_by_name("submit").click()
         self.return_to_groups_page()
+
+    def fill_form(self, fill):
+        wd = self.app.wd
+        wd.find_element_by_name("group_name").click()
+        wd.find_element_by_name("group_name").clear()
+        wd.find_element_by_name("group_name").send_keys(fill.name)
+        wd.find_element_by_name("group_header").click()
+        wd.find_element_by_name("group_header").clear()
+        wd.find_element_by_name("group_header").send_keys(fill.header)
+        wd.find_element_by_name("group_footer").click()
+        wd.find_element_by_name("group_footer").clear()
+        wd.find_element_by_name("group_footer").send_keys(fill.footer)
 
     def delete_first_group(self):
         wd = self.app.wd
@@ -35,7 +39,7 @@ class GroupHelper:
         wd.find_element_by_name("delete").click()
         self.return_to_groups_page()
 
-    def edit_first_group(self, group):
+    def edit_first_group(self, fill):
         wd = self.app.wd
         self.open_groups_page()
         # select first group
@@ -43,15 +47,7 @@ class GroupHelper:
         # init edition
         wd.find_element_by_name("edit").click()
         # fill group form
-        wd.find_element_by_name("group_name").click()
-        wd.find_element_by_name("group_name").clear()
-        wd.find_element_by_name("group_name").send_keys(group.name)
-        wd.find_element_by_name("group_header").click()
-        wd.find_element_by_name("group_header").clear()
-        wd.find_element_by_name("group_header").send_keys(group.header)
-        wd.find_element_by_name("group_footer").click()
-        wd.find_element_by_name("group_footer").clear()
-        wd.find_element_by_name("group_footer").send_keys(group.footer)
+        self.fill_form(fill)
         # submit edition
         wd.find_element_by_name("update").click()
         self.return_to_groups_page()
