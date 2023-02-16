@@ -8,3 +8,13 @@ def test_edit_first_contact(app):
                                confirmbday="//option[@value='5']", bmonth="January",
                                confirmbmonth="//option[@value='January']", byear="2000"))
     app.session.logout()
+
+def test_edit_first_contact_name(app):
+    app.session.login(username="admin", password="secret")
+    app.contact.edit_first(Contact(firstname="NewPetr", middlename="NewPetrovich", lastname="NewPetrov"))
+    app.session.logout()
+
+def test_edit_first_contact_phone(app):
+    app.session.login(username="admin", password="secret")
+    app.contact.edit_first(Contact(homephone="911"))
+    app.session.logout()
